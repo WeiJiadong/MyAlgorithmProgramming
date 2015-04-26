@@ -23,6 +23,7 @@ int main(){
 		cin >> temp;
 		array.push_back(temp);
 	} 
+	cout << endl << "全排列结果为:" << endl;
 	
 	fullPermutation(array, 0, n);	
 	
@@ -30,17 +31,18 @@ int main(){
 }
 template <typename T>
 void fullPermutation(T &a, unsigned int k, unsigned int n){
-	if (k == n){	//如果k和m相等 
+    if (k == n){	//如果k和m相等 
 		for (int i = 0; i < n; i++){
 			cout << a[i] << ' ';
 		} 
 		cout << endl;
 	}
 	for (int i = k; i < n; i++){
-		if (a[i] != a[k])
+		//固定k，分别与后面交换 
 		swap(a[k], a[i]);
+		//再固定k+1与后面继续进行全排列 
 		fullPermutation(a, k + 1, n);
-		if (a[i] != a[k])
+		//调用结束再换回来 
 		swap(a[k], a[i]);
 	} 
 }
